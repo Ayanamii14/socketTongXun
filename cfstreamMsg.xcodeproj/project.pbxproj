@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		F42584561F6FBF5800DDE955 /* lyhaoStreamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */; };
 		F42584591F6FC3C100DDE955 /* StudentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584581F6FC3C100DDE955 /* StudentModel.m */; };
+		F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F425845C1F70EE1700DDE955 /* ModifyViewController.m */; };
+		F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F425845D1F70EE1700DDE955 /* ModifyViewController.xib */; };
+		F42584631F70F2E700DDE955 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584611F70F2E700DDE955 /* AddViewController.m */; };
+		F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42584621F70F2E700DDE955 /* AddViewController.xib */; };
+		F425846B1F710E6C00DDE955 /* NSObject+YYModel.h in Sources */ = {isa = PBXBuildFile; fileRef = F42584661F710E3C00DDE955 /* NSObject+YYModel.h */; };
+		F425846C1F710E6C00DDE955 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584671F710E3C00DDE955 /* NSObject+YYModel.m */; };
+		F425846D1F710E6C00DDE955 /* YYClassInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = F42584681F710E3C00DDE955 /* YYClassInfo.h */; };
+		F425846E1F710E6C00DDE955 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584691F710E3C00DDE955 /* YYClassInfo.m */; };
+		F425846F1F710E6C00DDE955 /* YYModel.h in Sources */ = {isa = PBXBuildFile; fileRef = F425846A1F710E3C00DDE955 /* YYModel.h */; };
 		F44127471F6B75830074720F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127461F6B75830074720F /* main.m */; };
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
 		F441274D1F6B75830074720F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441274C1F6B75830074720F /* ViewController.m */; };
@@ -23,15 +32,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		69A225C21F6FF51300EEADEC /* NSObject+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
-		69A225C31F6FF51300EEADEC /* NSObject+YYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
-		69A225C41F6FF51300EEADEC /* YYClassInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
-		69A225C51F6FF51300EEADEC /* YYClassInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
-		69A225C61F6FF51300EEADEC /* YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		F42584541F6FBF5800DDE955 /* lyhaoStreamManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lyhaoStreamManager.h; sourceTree = "<group>"; };
 		F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lyhaoStreamManager.m; sourceTree = "<group>"; };
 		F42584571F6FC3C100DDE955 /* StudentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentModel.h; sourceTree = "<group>"; };
 		F42584581F6FC3C100DDE955 /* StudentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentModel.m; sourceTree = "<group>"; };
+		F425845B1F70EE1700DDE955 /* ModifyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
+		F425845C1F70EE1700DDE955 /* ModifyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
+		F425845D1F70EE1700DDE955 /* ModifyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyViewController.xib; sourceTree = "<group>"; };
+		F42584601F70F2E700DDE955 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		F42584611F70F2E700DDE955 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		F42584621F70F2E700DDE955 /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
+		F42584661F710E3C00DDE955 /* NSObject+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		F42584671F710E3C00DDE955 /* NSObject+YYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		F42584681F710E3C00DDE955 /* YYClassInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		F42584691F710E3C00DDE955 /* YYClassInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		F425846A1F710E3C00DDE955 /* YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		F44127421F6B75830074720F /* cfstreamMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cfstreamMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44127461F6B75830074720F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F44127481F6B75830074720F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,29 +78,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		69A225C11F6FF51300EEADEC /* YYModel */ = {
-			isa = PBXGroup;
-			children = (
-				69A225C21F6FF51300EEADEC /* NSObject+YYModel.h */,
-				69A225C31F6FF51300EEADEC /* NSObject+YYModel.m */,
-				69A225C41F6FF51300EEADEC /* YYClassInfo.h */,
-				69A225C51F6FF51300EEADEC /* YYClassInfo.m */,
-				69A225C61F6FF51300EEADEC /* YYModel.h */,
-			);
-			path = YYModel;
-			sourceTree = "<group>";
-		};
 		F42584521F6FBF2000DDE955 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				F42584571F6FC3C100DDE955 /* StudentModel.h */,
+				F42584581F6FC3C100DDE955 /* StudentModel.m */,
 				F4AABE781F6FBA03003526CD /* StudentListViewController.h */,
 				F4AABE791F6FBA03003526CD /* StudentListViewController.m */,
 				F4AABE7A1F6FBA03003526CD /* StudentListViewController.xib */,
 				F4AABE7D1F6FBA1E003526CD /* StudentDetailTableViewCell.h */,
 				F4AABE7E1F6FBA1E003526CD /* StudentDetailTableViewCell.m */,
 				F4AABE7F1F6FBA1E003526CD /* StudentDetailTableViewCell.xib */,
-				F42584571F6FC3C100DDE955 /* StudentModel.h */,
-				F42584581F6FC3C100DDE955 /* StudentModel.m */,
 			);
 			name = Student;
 			sourceTree = "<group>";
@@ -99,6 +102,31 @@
 				F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */,
 			);
 			name = Socket;
+			sourceTree = "<group>";
+		};
+		F425845A1F70EDEE00DDE955 /* StudentFunc */ = {
+			isa = PBXGroup;
+			children = (
+				F425845B1F70EE1700DDE955 /* ModifyViewController.h */,
+				F425845C1F70EE1700DDE955 /* ModifyViewController.m */,
+				F425845D1F70EE1700DDE955 /* ModifyViewController.xib */,
+				F42584601F70F2E700DDE955 /* AddViewController.h */,
+				F42584611F70F2E700DDE955 /* AddViewController.m */,
+				F42584621F70F2E700DDE955 /* AddViewController.xib */,
+			);
+			name = StudentFunc;
+			sourceTree = "<group>";
+		};
+		F42584651F710E3C00DDE955 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				F42584661F710E3C00DDE955 /* NSObject+YYModel.h */,
+				F42584671F710E3C00DDE955 /* NSObject+YYModel.m */,
+				F42584681F710E3C00DDE955 /* YYClassInfo.h */,
+				F42584691F710E3C00DDE955 /* YYClassInfo.m */,
+				F425846A1F710E3C00DDE955 /* YYModel.h */,
+			);
+			path = YYModel;
 			sourceTree = "<group>";
 		};
 		F44127391F6B75830074720F = {
@@ -120,7 +148,7 @@
 		F44127441F6B75830074720F /* cfstreamMsg */ = {
 			isa = PBXGroup;
 			children = (
-				69A225C11F6FF51300EEADEC /* YYModel */,
+				F42584651F710E3C00DDE955 /* YYModel */,
 				F44127481F6B75830074720F /* AppDelegate.h */,
 				F44127491F6B75830074720F /* AppDelegate.m */,
 				F441274B1F6B75830074720F /* ViewController.h */,
@@ -128,6 +156,7 @@
 				F441274E1F6B75830074720F /* Main.storyboard */,
 				F42584531F6FBF3500DDE955 /* Socket */,
 				F42584521F6FBF2000DDE955 /* Student */,
+				F425845A1F70EDEE00DDE955 /* StudentFunc */,
 				F44127511F6B75830074720F /* Assets.xcassets */,
 				F44127531F6B75830074720F /* LaunchScreen.storyboard */,
 				F44127561F6B75830074720F /* Info.plist */,
@@ -202,10 +231,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */,
 				F4AABE811F6FBA1E003526CD /* StudentDetailTableViewCell.xib in Resources */,
 				F4AABE7C1F6FBA03003526CD /* StudentListViewController.xib in Resources */,
 				F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */,
 				F44127521F6B75830074720F /* Assets.xcassets in Resources */,
+				F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */,
 				F44127501F6B75830074720F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +248,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F425846B1F710E6C00DDE955 /* NSObject+YYModel.h in Sources */,
+				F425846C1F710E6C00DDE955 /* NSObject+YYModel.m in Sources */,
+				F425846D1F710E6C00DDE955 /* YYClassInfo.h in Sources */,
+				F425846E1F710E6C00DDE955 /* YYClassInfo.m in Sources */,
+				F425846F1F710E6C00DDE955 /* YYModel.h in Sources */,
+				F42584631F70F2E700DDE955 /* AddViewController.m in Sources */,
+				F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */,
 				F4AABE801F6FBA1E003526CD /* StudentDetailTableViewCell.m in Sources */,
 				F42584591F6FC3C100DDE955 /* StudentModel.m in Sources */,
 				F493EC1D1F6F8F3A001018CE /* lyhaoSocketManager.m in Sources */,

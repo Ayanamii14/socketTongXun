@@ -15,4 +15,6 @@
 @property (strong, nonatomic) NSString *age;
 @property (strong, nonatomic) NSString *gender;
 
++ (instancetype)yj_initWithDictionary:(NSDictionary *)dic;
+
 @end

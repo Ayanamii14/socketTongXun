@@ -15,10 +15,12 @@
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    StudentListViewController *listVC = [[StudentListViewController alloc] init];
-//    self.window.rootViewController = listVC;
-//    [self.window makeKeyAndVisible];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    StudentListViewController *listVC = [[StudentListViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
+    
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
