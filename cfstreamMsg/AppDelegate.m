@@ -18,7 +18,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     StudentListViewController *listVC = [[StudentListViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
-    
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     

@@ -15,11 +15,19 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol lyhaoSocketManagerDelegate <NSObject>
+
+- (void)recvMsg:(NSArray *)msg;
+
+@end
+
 @interface lyhaoSocketManager : NSObject
 
 + (instancetype)shareInstance;
 - (void)connect;
 - (void)disConnect;
 - (void)sendMsg:(NSString *)msg;
+
+@property (weak, nonatomic) id <lyhaoSocketManagerDelegate> delegate;
 
 @end

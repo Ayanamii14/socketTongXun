@@ -12,6 +12,9 @@
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
+static const char *server_ip = "127.0.0.1";
+static short server_port = 7777;
+
 @interface lyhaoSocketManager()
 
 @property (assign, nonatomic) int clientSocket;
@@ -40,9 +43,6 @@
     //创建socket
     _clientSocket = CreateClinetSocket();
     
-    const char *server_ip = "127.0.0.1";
-    short server_port = 7777;
-    
     if (ConnectionToServer(_clientSocket, server_ip, server_port) == 0) {
         printf("conncet to server error!!!");
         return;
@@ -52,12 +52,39 @@
 }
 
 - (void)pullMsg {
+    
     dispatch_queue_t queueConcurrent = dispatch_queue_create("recv", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queueConcurrent, ^{
         while (1) {
             char recv_Msg[1024] = {0};
             recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
-            printf("%s\n",recv_Msg);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"recvMsg" object:@"1"];
+//            NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
+            NSArray *a = @[@{
+                               @"name":@"张三",
+                               @"gender":@"1",
+                               @"age":@"23",
+                               @"studentID":@"21738843",
+                               },@{
+                               @"name":@"李四",
+                               @"gender":@"1",
+                               @"age":@"20",
+                               @"studentID":@"21738655",
+                               },@{
+                               @"name":@"王五",
+                               @"gender":@"1",
+                               @"age":@"22",
+                               @"studentID":@"21738887",
+                               },@{
+                               @"name":@"赵六",
+                               @"gender":@"0",
+                               @"age":@"21",
+                               @"studentID":@"21738864",
+                               }];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
+                [_delegate recvMsg:a];
+            }
         }
     });
 }
@@ -105,6 +132,39 @@ static int ConnectionToServer(int client_socket, const char *server_ip, unsigned
         return client_socket;
     }
     return 0;
+}
+
+- (NSArray *)jsonStringToArray:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *arr = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    return arr;
+}
+
+- (NSString *)arrayToJsonString:(NSArray *)array {
+    if (array == nil || array.count == 0) {
+        return nil;
+    }
+    NSError *error;
+    NSData *data=[NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    return jsonStr;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

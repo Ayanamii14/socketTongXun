@@ -9,11 +9,13 @@
 #import "StudentListViewController.h"
 #import "StudentDetailTableViewCell.h"
 #import "ModifyViewController.h"
+#import "AddViewController.h"
 #import "YYModel.h"
+#import "lyhaoSocketManager.h"
 
 static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID";
 
-@interface StudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface StudentListViewController ()<UITableViewDelegate, UITableViewDataSource,lyhaoSocketManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *dataArr;
@@ -24,27 +26,10 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArr = [[NSMutableArray alloc] initWithObjects:@{
-                                                            @"name":@"张三",
-                                                            @"gender":@"1",
-                                                            @"age":@"23",
-                                                            @"studentID":@"217388439121",
-                                                            },@{
-                                                                @"name":@"李四",
-                                                                @"gender":@"1",
-                                                                @"age":@"20",
-                                                                @"studentID":@"217386557671",
-                                                                },@{
-                                                                    @"name":@"王五",
-                                                                    @"gender":@"1",
-                                                                    @"age":@"22",
-                                                                    @"studentID":@"217388873121",
-                                                                    },@{
-                                                                        @"name":@"赵六",
-                                                                        @"gender":@"0",
-                                                                        @"age":@"21",
-                                                                        @"studentID":@"217388643321",
-                                                                        }, nil];
+    [lyhaoSocketManager shareInstance];
+    [[lyhaoSocketManager shareInstance] setDelegate:self];
+    [[lyhaoSocketManager shareInstance] sendMsg:@"aaa"];
+    
     [self initUI];
 }
 
@@ -58,15 +43,25 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 }
 
 - (void)rightAction:(UIBarButtonItem *)sender {
-    
+    AddViewController *addVC = [[AddViewController alloc] init];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
+#pragma mark - lyhaoSocketManagerDelegate
+- (void)recvMsg:(NSArray *)msg {
+    self.dataArr = [NSMutableArray arrayWithArray:msg];
+    //回主线程更新
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+#pragma mark - tableview datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StudentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kStudentDetailTableViewCellID];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StudentDetailTableViewCell" owner:nil options:nil] firstObject];
     }
-
 //    [cell refreshViewWithData:[StudentModel yj_initWithDictionary:self.dataArr[indexPath.row]]];
     [cell refreshViewWithData:[StudentModel yy_modelWithDictionary:self.dataArr[indexPath.row]]];
     return cell;
@@ -83,10 +78,15 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSLog(@"删除");
+        [[lyhaoSocketManager shareInstance] sendMsg:@"DELETE "];
+        [self.tableView reloadData];
     }];
     UITableViewRowAction *modifyAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
+        modifyVC.name = [self.dataArr[indexPath.row] objectForKey:@"name"];
+        modifyVC.gender = [self.dataArr[indexPath.row] objectForKey:@"gender"];
+        modifyVC.age = [self.dataArr[indexPath.row] objectForKey:@"age"];
+        modifyVC.studentID = [self.dataArr[indexPath.row] objectForKey:@"studentID"];
         [self.navigationController pushViewController:modifyVC animated:YES];
     }];
     
