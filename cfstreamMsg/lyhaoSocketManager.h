@@ -25,6 +25,7 @@
 @interface lyhaoSocketManager : NSObject
 
 + (instancetype)shareInstance;
+- (void)connectAndPull;
 - (void)connect;
 - (void)disConnect;
 - (void)sendMsg:(NSString *)msg;

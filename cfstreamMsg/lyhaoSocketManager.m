@@ -13,10 +13,11 @@
 #import <arpa/inet.h>
 
 static const char *server_ip = "127.0.0.1";
-static short server_port = 7777;
+static short server_port = 6666;
 
 @interface lyhaoSocketManager(){
     BOOL _isSucc;
+    NSString *_cMsg;
 }
 @property (assign, nonatomic) int clientSocket;
 
@@ -35,6 +36,11 @@ static short server_port = 7777;
     return manager;
 }
 
+- (void)connectAndPull {
+    [self initWithSocket];
+    [self pullMsg];
+}
+
 - (void)initWithSocket {
     if (_clientSocket != 0) {
         [self disConnect];
@@ -43,29 +49,24 @@ static short server_port = 7777;
     
     //创建socket
     _clientSocket = CreateClinetSocket();
-    NSString *cMsg;
     if (ConnectionToServer(_clientSocket, server_ip, server_port) == 0) {
-        cMsg = @"conncet to server error!!!";
+        _cMsg = @"conncet to server error!!!";
         _isSucc = NO;
     }
     else {
-        cMsg = @"connect to server success!!!";
+        _cMsg = @"connect to server success!!!";
         _isSucc = YES;
-    }
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(connectionMsg:)]) {
-        [_delegate connectionMsg:cMsg];
     }
 }
 
 - (void)pullMsg {
     if (_isSucc) {
-        dispatch_queue_t queueConcurrent = dispatch_queue_create("recv", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_queue_t queueConcurrent = dispatch_queue_create("receive", DISPATCH_QUEUE_CONCURRENT);
         dispatch_async(queueConcurrent, ^{
             while (1) {
                 char recv_Msg[1024] = {0};
                 recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
-                //            NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
+//                NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
                 NSArray *a = @[@{
                                    @"name":@"张三",
                                    @"gender":@"1",
@@ -105,8 +106,15 @@ static short server_port = 7777;
 }
 
 - (void)sendMsg:(NSString *)msg {
-    const char *send_Msg = [msg UTF8String];
-    send(_clientSocket, send_Msg, strlen(send_Msg) + 1, 0);
+    if (_isSucc) {
+        const char *send_Msg = [msg UTF8String];
+        send(_clientSocket, send_Msg, strlen(send_Msg) + 1, 0);
+    }
+    else {
+        if (_delegate && [_delegate respondsToSelector:@selector(connectionMsg:)]) {
+            [_delegate connectionMsg:_cMsg];
+        }
+    }
 }
 
 static int CreateClinetSocket() {

@@ -37,6 +37,8 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     self.title = @"Student List";
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightAction:)];
     self.navigationItem.rightBarButtonItem = right;
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(leftAction:)];
+    self.navigationItem.leftBarButtonItem = left;
     
     self.tableView.rowHeight = 77;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -45,6 +47,11 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 - (void)rightAction:(UIBarButtonItem *)sender {
     AddViewController *addVC = [[AddViewController alloc] init];
     [self.navigationController pushViewController:addVC animated:YES];
+}
+
+- (void)leftAction:(UIBarButtonItem *)sender {
+    [[lyhaoSocketManager shareInstance] connectAndPull];
+    [[lyhaoSocketManager shareInstance] sendMsg:@"aaa"];
 }
 
 #pragma mark - lyhaoSocketManagerDelegate
@@ -83,7 +90,8 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        [[lyhaoSocketManager shareInstance] sendMsg:@"DELETE "];
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM tableName WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]] ;
+        [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.tableView reloadData];
     }];
     UITableViewRowAction *modifyAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
