@@ -56,6 +56,11 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     });
 }
 
+- (void)connectionMsg:(NSString *)msg {
+    [[lyhaoSocketManager shareInstance] disConnect];
+    [self alertWithMsg:msg];
+}
+
 #pragma mark - tableview datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StudentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kStudentDetailTableViewCellID];
@@ -91,6 +96,15 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     }];
     
     return @[deleteAction, modifyAction];
+}
+
+- (void)alertWithMsg:(NSString *)msg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *queding = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:queding];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

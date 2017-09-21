@@ -15,8 +15,9 @@
 static const char *server_ip = "127.0.0.1";
 static short server_port = 7777;
 
-@interface lyhaoSocketManager()
-
+@interface lyhaoSocketManager(){
+    BOOL _isSucc;
+}
 @property (assign, nonatomic) int clientSocket;
 
 @end
@@ -42,51 +43,57 @@ static short server_port = 7777;
     
     //创建socket
     _clientSocket = CreateClinetSocket();
-    
+    NSString *cMsg;
     if (ConnectionToServer(_clientSocket, server_ip, server_port) == 0) {
-        printf("conncet to server error!!!");
-        return;
+        cMsg = @"conncet to server error!!!";
+        _isSucc = NO;
+    }
+    else {
+        cMsg = @"connect to server success!!!";
+        _isSucc = YES;
     }
     
-    printf("connect to server success!!!");
+    if (_delegate && [_delegate respondsToSelector:@selector(connectionMsg:)]) {
+        [_delegate connectionMsg:cMsg];
+    }
 }
 
 - (void)pullMsg {
-    
-    dispatch_queue_t queueConcurrent = dispatch_queue_create("recv", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_async(queueConcurrent, ^{
-        while (1) {
-            char recv_Msg[1024] = {0};
-            recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"recvMsg" object:@"1"];
-//            NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
-            NSArray *a = @[@{
-                               @"name":@"张三",
-                               @"gender":@"1",
-                               @"age":@"23",
-                               @"studentID":@"21738843",
-                               },@{
-                               @"name":@"李四",
-                               @"gender":@"1",
-                               @"age":@"20",
-                               @"studentID":@"21738655",
-                               },@{
-                               @"name":@"王五",
-                               @"gender":@"1",
-                               @"age":@"22",
-                               @"studentID":@"21738887",
-                               },@{
-                               @"name":@"赵六",
-                               @"gender":@"0",
-                               @"age":@"21",
-                               @"studentID":@"21738864",
-                               }];
-            
-            if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
-                [_delegate recvMsg:a];
+    if (_isSucc) {
+        dispatch_queue_t queueConcurrent = dispatch_queue_create("recv", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(queueConcurrent, ^{
+            while (1) {
+                char recv_Msg[1024] = {0};
+                recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
+                //            NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
+                NSArray *a = @[@{
+                                   @"name":@"张三",
+                                   @"gender":@"1",
+                                   @"age":@"23",
+                                   @"studentID":@"21738843",
+                                   },@{
+                                   @"name":@"李四",
+                                   @"gender":@"1",
+                                   @"age":@"20",
+                                   @"studentID":@"21738655",
+                                   },@{
+                                   @"name":@"王五",
+                                   @"gender":@"1",
+                                   @"age":@"22",
+                                   @"studentID":@"21738887",
+                                   },@{
+                                   @"name":@"赵六",
+                                   @"gender":@"0",
+                                   @"age":@"21",
+                                   @"studentID":@"21738864",
+                                   }];
+                
+                if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
+                    [_delegate recvMsg:a];
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 - (void)connect {
@@ -164,7 +171,7 @@ static int ConnectionToServer(int client_socket, const char *server_ip, unsigned
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 @end

@@ -18,6 +18,7 @@
 @protocol lyhaoSocketManagerDelegate <NSObject>
 
 - (void)recvMsg:(NSArray *)msg;
+- (void)connectionMsg:(NSString *)msg;
 
 @end
 

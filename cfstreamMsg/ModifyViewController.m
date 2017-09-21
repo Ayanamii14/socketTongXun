@@ -38,10 +38,18 @@
 
 - (IBAction)modifyAction:(UIButton *)sender {
     //修改student sql语句
-    if (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) {
-        
-    }
-    [[lyhaoSocketManager shareInstance] sendMsg:@"UPDATE student SET "];
+    NSString *name;
+    NSString *gender;
+    NSString *age;
+    NSString *studentID;
+    
+    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
+    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);
+    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
+    (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
+    
+    NSString *sql = [NSString stringWithFormat:@"UPDATE tableName SET name = '%@',gender = '%@',age = '%@',studentID = '%@' WHERE name = '%@'",name,gender,age,studentID,self.name];
+    [[lyhaoSocketManager shareInstance] sendMsg:sql];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
