@@ -129,22 +129,22 @@ static int CreateClinetSocket() {
     return ClientSocket;
 }
 
-static int ConnectionToServer(int client_socket, const char *server_ip, unsigned short server_port) {
+static int ConnectionToServer(int clientSocket, const char *serverIP, unsigned short serverPort) {
     struct sockaddr_in socketAddr = {0};
     socketAddr.sin_len = sizeof(socketAddr);
     socketAddr.sin_family = AF_INET;
     //inet_aton是一个改进的方法来将一个字符串IP地址转换为一个32位的网络序列IP地址
     //如果这个函数成功，函数的返回值非零，如果输入地址不正确则会返回零。
-    inet_aton(server_ip, &socketAddr.sin_addr);
+    inet_aton(serverIP, &socketAddr.sin_addr);
     
     //htons是将整型变量从主机字节顺序转变成网络字节顺序，赋值端口号
-    socketAddr.sin_port = htons(server_port);
+    socketAddr.sin_port = htons(serverPort);
     
     //用scoket和服务端地址，发起连接。
     //客户端向特定网络地址的服务器发送连接请求，连接成功返回0，失败返回 -1。
     //注意：该接口调用会阻塞当前线程，直到服务器返回。
-    if (connect(client_socket, (struct sockaddr *)&socketAddr, sizeof(socketAddr)) == 0) {
-        return client_socket;
+    if (connect(clientSocket, (struct sockaddr *)&socketAddr, sizeof(socketAddr)) == 0) {
+        return clientSocket;
     }
     return 0;
 }
