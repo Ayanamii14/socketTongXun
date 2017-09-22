@@ -33,6 +33,9 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     [self initUI];
 }
 
+/**
+ 初始化UI
+ */
 - (void)initUI {
     self.title = @"Student List";
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightAction:)];
@@ -57,6 +60,11 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 }
 
 #pragma mark - lyhaoSocketManagerDelegate
+/**
+ lyhaoSocketManager的代理方法，接收返回的消息
+
+ @param msg 消息
+ */
 - (void)recvMsg:(NSArray *)msg {
     self.dataArr = [NSMutableArray arrayWithArray:msg];
     //回主线程更新
@@ -87,7 +95,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM studentListTable WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]] ;
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM studentListTable WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]];
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.tableView reloadData];
     }];

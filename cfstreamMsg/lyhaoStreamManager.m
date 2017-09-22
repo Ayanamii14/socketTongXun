@@ -14,8 +14,6 @@
     NSOutputStream *_outputStream;
 }
 
-
-
 @end
 
 @implementation lyhaoStreamManager
