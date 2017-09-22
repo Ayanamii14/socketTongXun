@@ -28,7 +28,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     [super viewDidLoad];
     [lyhaoSocketManager shareInstance];
     [[lyhaoSocketManager shareInstance] setDelegate:self];
-    [[lyhaoSocketManager shareInstance] sendMsg:@"aaa"];
+    [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
     
     [self initUI];
 }
@@ -50,8 +50,10 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 }
 
 - (void)leftAction:(UIBarButtonItem *)sender {
+    [self.dataArr removeAllObjects];
     [[lyhaoSocketManager shareInstance] connectAndPull];
-    [[lyhaoSocketManager shareInstance] sendMsg:@"aaa"];
+    [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+    [self.tableView reloadData];
 }
 
 #pragma mark - lyhaoSocketManagerDelegate
@@ -61,11 +63,6 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-}
-
-- (void)connectionMsg:(NSString *)msg {
-    [[lyhaoSocketManager shareInstance] disConnect];
-    [self alertWithMsg:msg];
 }
 
 #pragma mark - tableview datasource
@@ -90,7 +87,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM tableName WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]] ;
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM studentListTable WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]] ;
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.tableView reloadData];
     }];

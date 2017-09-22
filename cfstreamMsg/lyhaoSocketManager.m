@@ -13,7 +13,7 @@
 #import <arpa/inet.h>
 
 static const char *server_ip = "127.0.0.1";
-static short server_port = 6666;
+static short server_port = 7777;
 
 @interface lyhaoSocketManager(){
     BOOL _isSucc;
@@ -50,50 +50,19 @@ static short server_port = 6666;
     //创建socket
     _clientSocket = CreateClinetSocket();
     if (ConnectionToServer(_clientSocket, server_ip, server_port) == 0) {
-        _cMsg = @"conncet to server error!!!";
+        NSLog(@"conncet to server error!!!");
         _isSucc = NO;
+        return;
     }
-    else {
-        _cMsg = @"connect to server success!!!";
-        _isSucc = YES;
-    }
+    
+    NSLog(@"connect to server success!!!");
+    _isSucc = YES;
 }
 
 - (void)pullMsg {
     if (_isSucc) {
-        dispatch_queue_t queueConcurrent = dispatch_queue_create("receive", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(queueConcurrent, ^{
-            while (1) {
-                char recv_Msg[1024] = {0};
-                recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
-//                NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
-                NSArray *a = @[@{
-                                   @"name":@"张三",
-                                   @"gender":@"1",
-                                   @"age":@"23",
-                                   @"studentID":@"21738843",
-                                   },@{
-                                   @"name":@"李四",
-                                   @"gender":@"1",
-                                   @"age":@"20",
-                                   @"studentID":@"21738655",
-                                   },@{
-                                   @"name":@"王五",
-                                   @"gender":@"1",
-                                   @"age":@"22",
-                                   @"studentID":@"21738887",
-                                   },@{
-                                   @"name":@"赵六",
-                                   @"gender":@"0",
-                                   @"age":@"21",
-                                   @"studentID":@"21738864",
-                                   }];
-                
-                if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
-                    [_delegate recvMsg:a];
-                }
-            }
-        });
+        NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(recieveAction) object:nil];
+        [thread start];
     }
 }
 
@@ -106,14 +75,39 @@ static short server_port = 6666;
 }
 
 - (void)sendMsg:(NSString *)msg {
-    if (_isSucc) {
-        const char *send_Msg = [msg UTF8String];
-        send(_clientSocket, send_Msg, strlen(send_Msg) + 1, 0);
-    }
-    else {
-        if (_delegate && [_delegate respondsToSelector:@selector(connectionMsg:)]) {
-            [_delegate connectionMsg:_cMsg];
+    const char *send_Msg = [msg UTF8String];
+    send(_clientSocket, send_Msg, strlen(send_Msg) + 1, 0);
+}
+
+//收取服务端发送的消息
+- (void)recieveAction{
+    while (1) {
+        char recv_Msg[1024] = {0};
+        recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
+        NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
+        if ([self jsonStringToDictionary:s]) {
+            NSMutableArray *ma = [NSMutableArray arrayWithArray:[[self jsonStringToDictionary:s] objectForKey:@"data"]];
+            if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
+                [_delegate recvMsg:ma];
+            }
         }
+        else {
+            continue;
+        }
+//        if ([s isEqualToString:@"hello"]) {
+//            NSLog(@"%@",s);
+//        }
+//        else if ([s isEqualToString:@""]) {
+//            NSLog(@"返回数据错误");
+//            break;
+//        }
+//        else if ([s isEqualToString:@"none"]) {
+//            NSLog(@"数据库为空");
+//            break;
+//        }
+//        else {
+//
+//        }
     }
 }
 
@@ -149,19 +143,19 @@ static int ConnectionToServer(int clientSocket, const char *serverIP, unsigned s
     return 0;
 }
 
-- (NSArray *)jsonStringToArray:(NSString *)jsonString {
+- (NSDictionary *)jsonStringToDictionary:(NSString *)jsonString {
     if (jsonString == nil) {
         return nil;
     }
     
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
-    NSArray *arr = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     if(error) {
-        NSLog(@"json解析失败：%@",error);
+//        NSLog(@"json解析失败：%@",error);
         return nil;
     }
-    return arr;
+    return dic;
 }
 
 - (NSString *)arrayToJsonString:(NSArray *)array {

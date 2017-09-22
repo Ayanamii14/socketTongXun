@@ -23,10 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initData];
 }
 
-- (void)initData {
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)addAction:(UIButton *)sender {
     //添加student sql语句
     if (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) {
         [self alertWithMsg:@"姓名不能为空"];
@@ -41,19 +45,11 @@
         [self alertWithMsg:@"学号不能为空"];
     }
     else {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO tableName VALUES('%@','%@','%@','%@')", self.nameTextField.text, self.genderTextField.text, self.ageTextField.text, self.studentIDTextField.text];
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO `studentListTable`(`name`, `gender`, `age`, `studentID`) VALUES (%@,%@,%@,%@)", self.nameTextField.text, self.genderTextField.text, self.ageTextField.text, self.studentIDTextField.text];
+        NSLog(@"%@",sql);
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)addAction:(UIButton *)sender {
-    
 }
 
 - (void)alertWithMsg:(NSString *)msg {

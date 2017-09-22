@@ -48,7 +48,7 @@
     (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
     (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
     
-    NSString *sql = [NSString stringWithFormat:@"UPDATE tableName SET name = '%@',gender = '%@',age = '%@',studentID = '%@' WHERE name = '%@'",name,gender,age,studentID,self.name];
+    NSString *sql = [NSString stringWithFormat:@"UPDATE studentListTable SET name = '%@',gender = '%@',age = '%@',studentID = '%@' WHERE name = '%@'",name,gender,age,studentID,self.name];
     [[lyhaoSocketManager shareInstance] sendMsg:sql];
     [self.navigationController popViewControllerAnimated:YES];
 }
