@@ -94,20 +94,6 @@ static short server_port = 7777;
         else {
             continue;
         }
-//        if ([s isEqualToString:@"hello"]) {
-//            NSLog(@"%@",s);
-//        }
-//        else if ([s isEqualToString:@""]) {
-//            NSLog(@"返回数据错误");
-//            break;
-//        }
-//        else if ([s isEqualToString:@"none"]) {
-//            NSLog(@"数据库为空");
-//            break;
-//        }
-//        else {
-//
-//        }
     }
 }
 
