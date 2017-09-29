@@ -10,7 +10,6 @@
 #import "StudentDetailTableViewCell.h"
 #import "ModifyViewController.h"
 #import "AddViewController.h"
-#import "YYModel.h"
 #import "lyhaoSocketManager.h"
 
 static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID";
@@ -26,10 +25,12 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [lyhaoSocketManager shareInstance];
-    [[lyhaoSocketManager shareInstance] setDelegate:self];
-    [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
     
+    [[lyhaoSocketManager shareInstance] setDelegate:self];
+    if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
+        [[lyhaoSocketManager shareInstance] pullMsg];
+        [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+    }
     [self initUI];
 }
 
@@ -54,7 +55,8 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)leftAction:(UIBarButtonItem *)sender {
     [self.dataArr removeAllObjects];
-    [[lyhaoSocketManager shareInstance] connectAndPull];
+    [[lyhaoSocketManager shareInstance] initWithSocket];
+    [[lyhaoSocketManager shareInstance] pullMsg];
     [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
     [self.tableView reloadData];
 }
@@ -73,14 +75,17 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     });
 }
 
+- (void)socketAlertMsg:(NSString *)msg {
+    [self alertWithMsgAndRefresh:msg];
+}
+
 #pragma mark - tableview datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StudentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kStudentDetailTableViewCellID];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StudentDetailTableViewCell" owner:nil options:nil] firstObject];
     }
-//    [cell refreshViewWithData:[StudentModel yj_initWithDictionary:self.dataArr[indexPath.row]]];
-    [cell refreshViewWithData:[StudentModel yy_modelWithDictionary:self.dataArr[indexPath.row]]];
+    [cell refreshViewWithData:[StudentModel yj_initWithDictionary:self.dataArr[indexPath.row]]];
     return cell;
 }
 
@@ -117,6 +122,18 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
         
     }];
     [alert addAction:queding];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)alertWithMsgAndRefresh:(NSString *)msg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *refresh = [UIAlertAction actionWithTitle:@"刷新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
+            [[lyhaoSocketManager shareInstance] pullMsg];
+            [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+        }
+    }];
+    [alert addAction:refresh];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

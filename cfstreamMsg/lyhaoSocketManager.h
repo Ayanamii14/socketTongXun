@@ -18,13 +18,19 @@
 @protocol lyhaoSocketManagerDelegate <NSObject>
 
 - (void)recvMsg:(NSArray *)msg;
+/*
+ 提示框的逻辑：
+     需要加提示框的地方在于初始化后
+ */
+- (void)socketAlertMsg:(NSString *)msg;
 
 @end
 
 @interface lyhaoSocketManager : NSObject
 
 + (instancetype)shareInstance;
-- (void)connectAndPull;
+- (BOOL)initWithSocket;
+- (BOOL)pullMsg;
 - (void)connect;
 - (void)disConnect;
 - (void)sendMsg:(NSString *)msg;

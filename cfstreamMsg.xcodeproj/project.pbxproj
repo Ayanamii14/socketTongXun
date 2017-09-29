@@ -13,15 +13,8 @@
 		F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F425845D1F70EE1700DDE955 /* ModifyViewController.xib */; };
 		F42584631F70F2E700DDE955 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584611F70F2E700DDE955 /* AddViewController.m */; };
 		F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42584621F70F2E700DDE955 /* AddViewController.xib */; };
-		F425846B1F710E6C00DDE955 /* NSObject+YYModel.h in Sources */ = {isa = PBXBuildFile; fileRef = F42584661F710E3C00DDE955 /* NSObject+YYModel.h */; };
-		F425846C1F710E6C00DDE955 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584671F710E3C00DDE955 /* NSObject+YYModel.m */; };
-		F425846D1F710E6C00DDE955 /* YYClassInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = F42584681F710E3C00DDE955 /* YYClassInfo.h */; };
-		F425846E1F710E6C00DDE955 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584691F710E3C00DDE955 /* YYClassInfo.m */; };
-		F425846F1F710E6C00DDE955 /* YYModel.h in Sources */ = {isa = PBXBuildFile; fileRef = F425846A1F710E3C00DDE955 /* YYModel.h */; };
 		F44127471F6B75830074720F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127461F6B75830074720F /* main.m */; };
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
-		F441274D1F6B75830074720F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441274C1F6B75830074720F /* ViewController.m */; };
-		F44127501F6B75830074720F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441274E1F6B75830074720F /* Main.storyboard */; };
 		F44127521F6B75830074720F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44127511F6B75830074720F /* Assets.xcassets */; };
 		F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44127531F6B75830074720F /* LaunchScreen.storyboard */; };
 		F493EC1D1F6F8F3A001018CE /* lyhaoSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F493EC1C1F6F8F3A001018CE /* lyhaoSocketManager.m */; };
@@ -42,18 +35,10 @@
 		F42584601F70F2E700DDE955 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		F42584611F70F2E700DDE955 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		F42584621F70F2E700DDE955 /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
-		F42584661F710E3C00DDE955 /* NSObject+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
-		F42584671F710E3C00DDE955 /* NSObject+YYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
-		F42584681F710E3C00DDE955 /* YYClassInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
-		F42584691F710E3C00DDE955 /* YYClassInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
-		F425846A1F710E3C00DDE955 /* YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		F44127421F6B75830074720F /* cfstreamMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cfstreamMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44127461F6B75830074720F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F44127481F6B75830074720F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F44127491F6B75830074720F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F441274B1F6B75830074720F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F441274C1F6B75830074720F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F441274F1F6B75830074720F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F44127511F6B75830074720F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44127541F6B75830074720F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44127561F6B75830074720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,10 +81,9 @@
 		F42584531F6FBF3500DDE955 /* Socket */ = {
 			isa = PBXGroup;
 			children = (
+				F4370B421F7E2ACF005FE541 /* NotUse */,
 				F493EC1B1F6F8F3A001018CE /* lyhaoSocketManager.h */,
 				F493EC1C1F6F8F3A001018CE /* lyhaoSocketManager.m */,
-				F42584541F6FBF5800DDE955 /* lyhaoStreamManager.h */,
-				F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */,
 			);
 			name = Socket;
 			sourceTree = "<group>";
@@ -117,16 +101,13 @@
 			name = StudentFunc;
 			sourceTree = "<group>";
 		};
-		F42584651F710E3C00DDE955 /* YYModel */ = {
+		F4370B421F7E2ACF005FE541 /* NotUse */ = {
 			isa = PBXGroup;
 			children = (
-				F42584661F710E3C00DDE955 /* NSObject+YYModel.h */,
-				F42584671F710E3C00DDE955 /* NSObject+YYModel.m */,
-				F42584681F710E3C00DDE955 /* YYClassInfo.h */,
-				F42584691F710E3C00DDE955 /* YYClassInfo.m */,
-				F425846A1F710E3C00DDE955 /* YYModel.h */,
+				F42584541F6FBF5800DDE955 /* lyhaoStreamManager.h */,
+				F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */,
 			);
-			path = YYModel;
+			name = NotUse;
 			sourceTree = "<group>";
 		};
 		F44127391F6B75830074720F = {
@@ -148,12 +129,8 @@
 		F44127441F6B75830074720F /* cfstreamMsg */ = {
 			isa = PBXGroup;
 			children = (
-				F42584651F710E3C00DDE955 /* YYModel */,
 				F44127481F6B75830074720F /* AppDelegate.h */,
 				F44127491F6B75830074720F /* AppDelegate.m */,
-				F441274B1F6B75830074720F /* ViewController.h */,
-				F441274C1F6B75830074720F /* ViewController.m */,
-				F441274E1F6B75830074720F /* Main.storyboard */,
 				F42584531F6FBF3500DDE955 /* Socket */,
 				F42584521F6FBF2000DDE955 /* Student */,
 				F425845A1F70EDEE00DDE955 /* StudentFunc */,
@@ -204,6 +181,7 @@
 				TargetAttributes = {
 					F44127411F6B75830074720F = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 23DLV7ATD9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -237,7 +215,6 @@
 				F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */,
 				F44127521F6B75830074720F /* Assets.xcassets in Resources */,
 				F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */,
-				F44127501F6B75830074720F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,11 +225,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F425846B1F710E6C00DDE955 /* NSObject+YYModel.h in Sources */,
-				F425846C1F710E6C00DDE955 /* NSObject+YYModel.m in Sources */,
-				F425846D1F710E6C00DDE955 /* YYClassInfo.h in Sources */,
-				F425846E1F710E6C00DDE955 /* YYClassInfo.m in Sources */,
-				F425846F1F710E6C00DDE955 /* YYModel.h in Sources */,
 				F42584631F70F2E700DDE955 /* AddViewController.m in Sources */,
 				F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */,
 				F4AABE801F6FBA1E003526CD /* StudentDetailTableViewCell.m in Sources */,
@@ -260,7 +232,6 @@
 				F493EC1D1F6F8F3A001018CE /* lyhaoSocketManager.m in Sources */,
 				F4AABE7B1F6FBA03003526CD /* StudentListViewController.m in Sources */,
 				F42584561F6FBF5800DDE955 /* lyhaoStreamManager.m in Sources */,
-				F441274D1F6B75830074720F /* ViewController.m in Sources */,
 				F441274A1F6B75830074720F /* AppDelegate.m in Sources */,
 				F44127471F6B75830074720F /* main.m in Sources */,
 			);
@@ -269,14 +240,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F441274E1F6B75830074720F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F441274F1F6B75830074720F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F44127531F6B75830074720F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -396,9 +359,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 23DLV7ATD9;
 				INFOPLIST_FILE = cfstreamMsg/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyhao.cfstreamMsg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,9 +373,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 23DLV7ATD9;
 				INFOPLIST_FILE = cfstreamMsg/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyhao.cfstreamMsg;
 				PRODUCT_NAME = "$(TARGET_NAME)";

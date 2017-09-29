@@ -33,45 +33,41 @@ static short server_port = 7777;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[self alloc] init];
-        [manager connectAndPull];
     });
     return manager;
-}
-
-- (void)connectAndPull {
-    [self initWithSocket];
-    [self pullMsg];
 }
 
 /**
  初始化，连接服务器
  */
-- (void)initWithSocket {
+- (BOOL)initWithSocket {
     if (_clientSocket != 0) {
         [self disConnect];
         _clientSocket = 0;
     }
-    
     //创建socket
     _clientSocket = CreateClinetSocket();
     if (ConnectionToServer(_clientSocket, server_ip, server_port) == 0) {
-        NSLog(@"conncet to server error!!!");
-        _isSucc = NO;
-        return;
+        if (_delegate && [_delegate respondsToSelector:@selector(socketAlertMsg:)]) {
+            [_delegate socketAlertMsg:@"conncet to server error!!!"];
+            _isSucc = NO;
+        }
+        return NO;
     }
-    
-    NSLog(@"connect to server success!!!");
     _isSucc = YES;
+    return YES;
 }
 
 /**
  拉消息
  */
-- (void)pullMsg {
+- (BOOL)pullMsg {
     if (_isSucc) {
         NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(recieveAction) object:nil];
         [thread start];
+        return YES;
     }
+    return NO;
 }
 
 /**
@@ -87,7 +83,6 @@ static short server_port = 7777;
 - (void)disConnect {
     close(_clientSocket);
 }
-
 
 /**
  发送消息
@@ -124,9 +119,9 @@ static short server_port = 7777;
 static int CreateClinetSocket() {
     int ClientSocket = 0;
     /*
-     第一个参数addressFamily IPv4(AF_INET) 或 IPv6(AF_INET6);
-     第二个参数 type 表示 socket 的类型，通常是流stream(SOCK_STREAM) 或数据报文datagram(SOCK_DGRAM);
-     第三个参数 protocol 参数通常设置为0，以便让系统自动为选择我们合适的协议。
+     1. addressFamily IPv4(AF_INET) 或 IPv6(AF_INET6);
+     2. type 表示 socket 的类型，通常是流stream(SOCK_STREAM) 或数据报文datagram(SOCK_DGRAM);
+     3. protocol 参数通常设置为0，以便让系统自动为选择我们合适的协议。
      对于 stream socket 来说会是 TCP 协议(IPPROTO_TCP)，而对于 datagram来说会是 UDP 协议(IPPROTO_UDP)。
      */
     ClientSocket = socket(AF_INET, SOCK_STREAM, 0);

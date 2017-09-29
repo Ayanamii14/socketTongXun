@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "StudentListViewController.h"
+#import "lyhaoSocketManager.h"
 
 @interface AppDelegate ()
 
@@ -48,7 +49,8 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    //断开连接
+    [[lyhaoSocketManager shareInstance] disConnect];
 }
 
 
