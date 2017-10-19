@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StudentModel : NSObject
-
+@interface StudentModel : NSObject <NSCoding>
+//服务器获取的状态
+@property (assign, nonatomic) BOOL isLogin;    //登录
+@property (assign, nonatomic) BOOL isLogout;   //注销
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *studentID;
 @property (strong, nonatomic) NSString *age;

@@ -39,4 +39,25 @@
     return myObj;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        self.isLogin = [aDecoder decodeObjectForKey:@"isLogin"];
+        self.isLogout = [aDecoder decodeObjectForKey:@"isLogout"];
+        self.age = [aDecoder decodeObjectForKey:@"age"];
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.gender = [aDecoder decodeObjectForKey:@"gender"];
+        self.studentID = [aDecoder decodeObjectForKey:@"studentID"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeBool:self.isLogin forKey:@"isLogin"];
+    [aCoder encodeBool:self.isLogout forKey:@"isLogout"];
+    [aCoder encodeBool:self.name forKey:@"name"];
+    [aCoder encodeBool:self.studentID forKey:@"studentID"];
+    [aCoder encodeBool:self.age forKey:@"age"];
+    [aCoder encodeBool:self.gender forKey:@"gender"];
+}
+
 @end

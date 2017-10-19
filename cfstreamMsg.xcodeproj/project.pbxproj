@@ -17,6 +17,9 @@
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
 		F44127521F6B75830074720F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44127511F6B75830074720F /* Assets.xcassets */; };
 		F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44127531F6B75830074720F /* LaunchScreen.storyboard */; };
+		F4899F3F1F986F97004D7584 /* StudentLoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */; };
+		F4899F401F986F97004D7584 /* StudentLoginRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */; };
+		F4899F431F987133004D7584 /* StudentUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F4899F421F987133004D7584 /* StudentUserDefaults.m */; };
 		F493EC1D1F6F8F3A001018CE /* lyhaoSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F493EC1C1F6F8F3A001018CE /* lyhaoSocketManager.m */; };
 		F4AABE7B1F6FBA03003526CD /* StudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AABE791F6FBA03003526CD /* StudentListViewController.m */; };
 		F4AABE7C1F6FBA03003526CD /* StudentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4AABE7A1F6FBA03003526CD /* StudentListViewController.xib */; };
@@ -42,6 +45,11 @@
 		F44127511F6B75830074720F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44127541F6B75830074720F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44127561F6B75830074720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4899F3C1F986F97004D7584 /* StudentLoginRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentLoginRegisterViewController.h; sourceTree = "<group>"; };
+		F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentLoginRegisterViewController.m; sourceTree = "<group>"; };
+		F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentLoginRegisterViewController.xib; sourceTree = "<group>"; };
+		F4899F411F987133004D7584 /* StudentUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentUserDefaults.h; sourceTree = "<group>"; };
+		F4899F421F987133004D7584 /* StudentUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentUserDefaults.m; sourceTree = "<group>"; };
 		F493EC1B1F6F8F3A001018CE /* lyhaoSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lyhaoSocketManager.h; sourceTree = "<group>"; };
 		F493EC1C1F6F8F3A001018CE /* lyhaoSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lyhaoSocketManager.m; sourceTree = "<group>"; };
 		F4AABE781F6FBA03003526CD /* StudentListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentListViewController.h; sourceTree = "<group>"; };
@@ -68,6 +76,11 @@
 			children = (
 				F42584571F6FC3C100DDE955 /* StudentModel.h */,
 				F42584581F6FC3C100DDE955 /* StudentModel.m */,
+				F4899F411F987133004D7584 /* StudentUserDefaults.h */,
+				F4899F421F987133004D7584 /* StudentUserDefaults.m */,
+				F4899F3C1F986F97004D7584 /* StudentLoginRegisterViewController.h */,
+				F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */,
+				F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */,
 				F4AABE781F6FBA03003526CD /* StudentListViewController.h */,
 				F4AABE791F6FBA03003526CD /* StudentListViewController.m */,
 				F4AABE7A1F6FBA03003526CD /* StudentListViewController.xib */,
@@ -212,6 +225,7 @@
 				F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */,
 				F4AABE811F6FBA1E003526CD /* StudentDetailTableViewCell.xib in Resources */,
 				F4AABE7C1F6FBA03003526CD /* StudentListViewController.xib in Resources */,
+				F4899F401F986F97004D7584 /* StudentLoginRegisterViewController.xib in Resources */,
 				F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */,
 				F44127521F6B75830074720F /* Assets.xcassets in Resources */,
 				F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */,
@@ -233,7 +247,9 @@
 				F4AABE7B1F6FBA03003526CD /* StudentListViewController.m in Sources */,
 				F42584561F6FBF5800DDE955 /* lyhaoStreamManager.m in Sources */,
 				F441274A1F6B75830074720F /* AppDelegate.m in Sources */,
+				F4899F431F987133004D7584 /* StudentUserDefaults.m in Sources */,
 				F44127471F6B75830074720F /* main.m in Sources */,
+				F4899F3F1F986F97004D7584 /* StudentLoginRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
