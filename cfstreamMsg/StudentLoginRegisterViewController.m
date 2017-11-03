@@ -33,6 +33,7 @@
 
 - (IBAction)backAction:(UIButton *)sender {
     StudentModel *s = [[StudentModel alloc] init];
+    s.isLogout = NO;
     s.isLogin = YES;
     s.name = @"1";
     s.studentID = @"1";

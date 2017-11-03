@@ -12,7 +12,7 @@
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
-static const char *server_ip = "192.168.22.156";//127.0.0.1
+static const char *server_ip = "127.0.0.1";//192.168.22.156
 static short server_port = 9090;
 
 @interface lyhaoSocketManager(){

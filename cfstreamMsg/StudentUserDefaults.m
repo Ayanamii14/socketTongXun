@@ -37,7 +37,7 @@
 
 - (BOOL)isLogin {
     BOOL status = NO;
-    StudentModel *student = [StudentModel new];
+    StudentModel *student = [self student];
     if (student != nil) {
         if (student.isLogin) {
             status = YES;
