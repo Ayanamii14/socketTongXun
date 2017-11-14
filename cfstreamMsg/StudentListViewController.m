@@ -11,6 +11,7 @@
 #import "ModifyViewController.h"
 #import "AddViewController.h"
 #import "lyhaoSocketManager.h"
+#import "LyhaoTools.h"
 
 static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID";
 
@@ -18,6 +19,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *dataArr;
+@property (strong, nonatomic) LyhaoTools *lyhaotools;
 
 @end
 
@@ -29,7 +31,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     [[lyhaoSocketManager shareInstance] setDelegate:self];
     if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
         [[lyhaoSocketManager shareInstance] pullMsg];
-        [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+        [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
     }
     [self initUI];
 }
@@ -57,7 +59,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     [self.dataArr removeAllObjects];
     [[lyhaoSocketManager shareInstance] initWithSocket];
     [[lyhaoSocketManager shareInstance] pullMsg];
-    [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+    [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
     [self.tableView reloadData];
 }
 
@@ -67,8 +69,14 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
  @param msg 消息
  */
-- (void)recvMsg:(NSArray *)msg {
-    self.dataArr = [NSMutableArray arrayWithArray:msg];
+- (void)recvMsg:(NSString *)msg {
+    /*
+     0 : ID
+     1 : NAME
+     2 : SEX
+     3 : AGE
+     */
+    self.dataArr = [NSMutableArray arrayWithArray:[self.lyhaotools atStringToArray:msg]];
     //回主线程更新
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -100,16 +108,16 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM studentListTable WHERE name = '%@'", [self.dataArr[indexPath.row] objectForKey:@"name"]];
+        NSString *sql = [NSString stringWithFormat:@"@delete@%@@%@@%@@%@", self.dataArr[indexPath.row][0], self.dataArr[indexPath.row][1], self.dataArr[indexPath.row][2], self.dataArr[indexPath.row][3]];
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.tableView reloadData];
     }];
     UITableViewRowAction *modifyAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
-        modifyVC.name = [self.dataArr[indexPath.row] objectForKey:@"name"];
-        modifyVC.gender = [self.dataArr[indexPath.row] objectForKey:@"gender"];
-        modifyVC.age = [self.dataArr[indexPath.row] objectForKey:@"age"];
-        modifyVC.studentID = [self.dataArr[indexPath.row] objectForKey:@"studentID"];
+        modifyVC.studentID = self.dataArr[indexPath.row][0];
+        modifyVC.name = self.dataArr[indexPath.row][1];
+        modifyVC.age = self.dataArr[indexPath.row][2];
+        modifyVC.gender = self.dataArr[indexPath.row][3];
         [self.navigationController pushViewController:modifyVC animated:YES];
     }];
     
@@ -130,11 +138,18 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     UIAlertAction *refresh = [UIAlertAction actionWithTitle:@"刷新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
             [[lyhaoSocketManager shareInstance] pullMsg];
-            [[lyhaoSocketManager shareInstance] sendMsg:@"SELECT * FROM studentListTable"];
+            [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
         }
     }];
     [alert addAction:refresh];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (LyhaoTools *)lyhaotools {
+    if (!_lyhaotools) {
+        _lyhaotools = [[LyhaoTools alloc] init];
+    }
+    return _lyhaotools;
 }
 
 @end

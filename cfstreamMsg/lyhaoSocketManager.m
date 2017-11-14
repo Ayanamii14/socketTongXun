@@ -13,7 +13,7 @@
 #import <arpa/inet.h>
 
 static const char *server_ip = "127.0.0.1";//192.168.22.156
-static short server_port = 9090;
+static short server_port = 8080;
 
 @interface lyhaoSocketManager(){
     BOOL _isSucc;
@@ -103,11 +103,9 @@ static short server_port = 9090;
         recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
         NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
         //s满足解析条件时，就继续
-        if ([self jsonStringToDictionary:s]) {
-            //从返回的json数据中取值，具体方法看数据（这里只是我的服务器返回格式）。
-            NSMutableArray *ma = [NSMutableArray arrayWithArray:[[self jsonStringToDictionary:s] objectForKey:@"data"]];
+        if (s) {
             if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {
-                [_delegate recvMsg:ma];
+                [_delegate recvMsg:s];
             }
         }
         else {
@@ -146,48 +144,6 @@ static int ConnectionToServer(int clientSocket, const char *serverIP, unsigned s
         return clientSocket;
     }
     return 0;
-}
-
-
-/**
- json 转 字典
-
- @param jsonString json字符串
- @return 字典
- */
-- (NSDictionary *)jsonStringToDictionary:(NSString *)jsonString {
-    if (jsonString == nil) {
-        return nil;
-    }
-    
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    if(error) {
-//        NSLog(@"json解析失败：%@",error);
-        return nil;
-    }
-    return dic;
-}
-
-/**
- 字典转json
-
- @param dictionary 字典
- @return json字符串
- */
-- (NSString *)dictionaryToJsonString:(NSDictionary *)dictionary {
-    if (dictionary == nil || dictionary.count == 0) {
-        return nil;
-    }
-    NSError *error;
-    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    if(error) {
-        NSLog(@"json解析失败：%@",error);
-        return nil;
-    }
-    return jsonStr;
 }
 
 - (void)dealloc {

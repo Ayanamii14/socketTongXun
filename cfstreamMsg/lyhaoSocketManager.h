@@ -17,7 +17,7 @@
 
 @protocol lyhaoSocketManagerDelegate <NSObject>
 
-- (void)recvMsg:(NSArray *)msg;
+- (void)recvMsg:(NSString *)msg;
 /*
  提示框的逻辑：
      需要加提示框的地方在于初始化后

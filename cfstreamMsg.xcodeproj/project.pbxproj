@@ -13,6 +13,7 @@
 		F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F425845D1F70EE1700DDE955 /* ModifyViewController.xib */; };
 		F42584631F70F2E700DDE955 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584611F70F2E700DDE955 /* AddViewController.m */; };
 		F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42584621F70F2E700DDE955 /* AddViewController.xib */; };
+		F42F3FE41FBAA1C800ABFA9B /* LyhaoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F42F3FE31FBAA1C800ABFA9B /* LyhaoTools.m */; };
 		F44127471F6B75830074720F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127461F6B75830074720F /* main.m */; };
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
 		F44127521F6B75830074720F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44127511F6B75830074720F /* Assets.xcassets */; };
@@ -38,6 +39,9 @@
 		F42584601F70F2E700DDE955 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		F42584611F70F2E700DDE955 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		F42584621F70F2E700DDE955 /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
+		F42F3FE11FBAA1AF00ABFA9B /* LyhaoCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyhaoCommon.h; sourceTree = "<group>"; };
+		F42F3FE21FBAA1C800ABFA9B /* LyhaoTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyhaoTools.h; sourceTree = "<group>"; };
+		F42F3FE31FBAA1C800ABFA9B /* LyhaoTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyhaoTools.m; sourceTree = "<group>"; };
 		F44127421F6B75830074720F /* cfstreamMsg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cfstreamMsg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44127461F6B75830074720F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F44127481F6B75830074720F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +118,16 @@
 			name = StudentFunc;
 			sourceTree = "<group>";
 		};
+		F42F3FE01FBAA15000ABFA9B /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				F42F3FE11FBAA1AF00ABFA9B /* LyhaoCommon.h */,
+				F42F3FE21FBAA1C800ABFA9B /* LyhaoTools.h */,
+				F42F3FE31FBAA1C800ABFA9B /* LyhaoTools.m */,
+			);
+			name = tools;
+			sourceTree = "<group>";
+		};
 		F4370B421F7E2ACF005FE541 /* NotUse */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +156,7 @@
 		F44127441F6B75830074720F /* cfstreamMsg */ = {
 			isa = PBXGroup;
 			children = (
+				F42F3FE01FBAA15000ABFA9B /* tools */,
 				F44127481F6B75830074720F /* AppDelegate.h */,
 				F44127491F6B75830074720F /* AppDelegate.m */,
 				F42584531F6FBF3500DDE955 /* Socket */,
@@ -240,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42584631F70F2E700DDE955 /* AddViewController.m in Sources */,
+				F42F3FE41FBAA1C800ABFA9B /* LyhaoTools.m in Sources */,
 				F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */,
 				F4AABE801F6FBA1E003526CD /* StudentDetailTableViewCell.m in Sources */,
 				F42584591F6FC3C100DDE955 /* StudentModel.m in Sources */,
