@@ -9,8 +9,6 @@
 #import "AddViewController.h"
 #import "lyhaoSocketManager.h"
 
-static const NSInteger up = 30;
-
 @interface AddViewController ()<UITextFieldDelegate> {
     BOOL _isMove;
 }
@@ -69,7 +67,7 @@ static const NSInteger up = 30;
         [self alertWithMsg:@"学号不能为空"];
     }
     else {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO `studentListTable`(`name`, `gender`, `age`, `studentID`) VALUES (%@,%@,%@,%@)", self.nameTextField.text, self.genderTextField.text, self.ageTextField.text, self.studentIDTextField.text];
+        NSString *sql = [NSString stringWithFormat:@"@insert@%@@%@@%@@%@", self.studentIDTextField.text, self.nameTextField.text, self.genderTextField.text, self.ageTextField.text];
         NSLog(@"%@",sql);
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.navigationController popViewControllerAnimated:YES];

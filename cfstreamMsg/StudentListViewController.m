@@ -57,8 +57,6 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)leftAction:(UIBarButtonItem *)sender {
     [self.dataArr removeAllObjects];
-    [[lyhaoSocketManager shareInstance] initWithSocket];
-    [[lyhaoSocketManager shareInstance] pullMsg];
     [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
     [self.tableView reloadData];
 }
@@ -76,7 +74,10 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
      2 : SEX
      3 : AGE
      */
-    self.dataArr = [NSMutableArray arrayWithArray:[self.lyhaotools atStringToArray:msg]];
+    NSArray *arr = [self.lyhaotools atStringToArray:msg];
+    if (arr != nil || arr.count != 0) {
+        self.dataArr = [NSMutableArray arrayWithArray:arr];
+    }
     //回主线程更新
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -150,6 +151,13 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
         _lyhaotools = [[LyhaoTools alloc] init];
     }
     return _lyhaotools;
+}
+
+- (NSMutableArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [[NSMutableArray alloc] init];
+    }
+    return _dataArr;
 }
 
 @end

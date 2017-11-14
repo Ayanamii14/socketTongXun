@@ -52,13 +52,15 @@
 }
 
 - (NSArray *)atStringToArray:(NSString *)atString {
-    NSArray *arr = [atString componentsSeparatedByString:@"#"];
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (int i = 0;i < arr.count;i ++) {
-        NSMutableArray *tempArr = [NSMutableArray array];
-        [tempArr addObjectsFromArray:[arr[i] componentsSeparatedByString:@"@"]];
-        [tempArr removeObjectAtIndex:0];
-        [result addObject:tempArr];
+    if (atString) {
+        NSArray *arr = [atString componentsSeparatedByString:@"#"];
+        for (int i = 0;i < arr.count;i ++) {
+            NSMutableArray *tempArr = [NSMutableArray array];
+            [tempArr addObjectsFromArray:[arr[i] componentsSeparatedByString:@"@"]];
+            [tempArr removeObjectAtIndex:0];
+            [result addObject:tempArr];
+        }
     }
     return result;
 }

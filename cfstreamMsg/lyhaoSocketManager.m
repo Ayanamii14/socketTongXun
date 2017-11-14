@@ -17,7 +17,6 @@ static short server_port = 8080;
 
 @interface lyhaoSocketManager(){
     BOOL _isSucc;
-    NSString *_cMsg;
 }
 @property (assign, nonatomic) int clientSocket;
 
