@@ -57,7 +57,10 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)leftAction:(UIBarButtonItem *)sender {
     [self.dataArr removeAllObjects];
-    [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
+    if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
+        [[lyhaoSocketManager shareInstance] pullMsg];
+        [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];
+    }
     [self.tableView reloadData];
 }
 
@@ -94,7 +97,8 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StudentDetailTableViewCell" owner:nil options:nil] firstObject];
     }
-    [cell refreshViewWithData:[StudentModel yj_initWithDictionary:self.dataArr[indexPath.row]]];
+//    [cell refreshViewWithData:[StudentModel yj_initWithDictionary:self.dataArr[indexPath.row]]];
+    [cell refreshViewWithArray:self.dataArr[indexPath.row]];
     return cell;
 }
 
@@ -136,7 +140,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (void)alertWithMsgAndRefresh:(NSString *)msg {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *refresh = [UIAlertAction actionWithTitle:@"刷新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *refresh = [UIAlertAction actionWithTitle:@"重连" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([[lyhaoSocketManager shareInstance] initWithSocket]) {
             [[lyhaoSocketManager shareInstance] pullMsg];
             [[lyhaoSocketManager shareInstance] sendMsg:@"@getall"];

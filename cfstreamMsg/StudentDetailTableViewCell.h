@@ -13,4 +13,12 @@
 
 - (void)refreshViewWithData:(StudentModel *)studentModel;
 
+/*
+ 0 : ID
+ 1 : NAME
+ 2 : SEX
+ 3 : AGE
+ */
+- (void)refreshViewWithArray:(NSArray *)array;
+
 @end

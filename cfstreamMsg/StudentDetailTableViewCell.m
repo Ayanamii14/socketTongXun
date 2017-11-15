@@ -36,4 +36,16 @@
     self.studentIDLabel.text = studentModel.studentID;
 }
 
+- (void)refreshViewWithArray:(NSArray *)array {
+    self.studentIDLabel.text = array[0];
+    self.nameLabel.text = array[1];
+    if ([array[2] isEqualToString:@"boy"]) {
+        self.genderLabel.text = @"♂";
+    }
+    else {
+        self.genderLabel.text = @"♀";
+    }
+    self.ageLabel.text = [NSString stringWithFormat:@"%@岁",array[3]];
+}
+
 @end

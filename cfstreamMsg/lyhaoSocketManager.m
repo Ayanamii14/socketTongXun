@@ -101,6 +101,7 @@ static short server_port = 8080;
         char recv_Msg[1024] = {0};
         recv(_clientSocket, recv_Msg, sizeof(recv_Msg), 0);
         NSString *s = [NSString stringWithFormat:@"%s",recv_Msg];
+        NSLog(@"%@", s);
         //s满足解析条件时，就继续
         if (s) {
             if (_delegate && [_delegate respondsToSelector:@selector(recvMsg:)]) {

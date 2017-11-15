@@ -6,8 +6,8 @@
 //  Copyright © 2017年 lyhao. All rights reserved.
 //
 /*
-     从未登录过，注册，发消息告诉服务器注册，返回注册信息（注册成功，用户名，密码，端口，ip），保存在本地。
-     登陆过，读取本地信息，登录，发消息告诉服务器，返回登录信息（登陆成功，用户名，密码，端口，ip），更新本地信息
+     从未登录过，注册，发消息告诉服务器注册，返回注册信息（注册成功，用户名，密码，端口），保存在本地。
+     登陆过，读取本地信息，登录，发消息告诉服务器，返回登录信息（登陆成功，用户名，密码，端口），更新本地信息
  */
 
 #import "StudentLoginRegisterViewController.h"
@@ -16,6 +16,7 @@
 #import "StudentListViewController.h"
 
 @interface StudentLoginRegisterViewController ()
+@property (weak, nonatomic) IBOutlet UIView *headView;
 
 @end
 

@@ -59,7 +59,9 @@
             NSMutableArray *tempArr = [NSMutableArray array];
             [tempArr addObjectsFromArray:[arr[i] componentsSeparatedByString:@"@"]];
             [tempArr removeObjectAtIndex:0];
-            [result addObject:tempArr];
+            if (tempArr.count != 0) {
+                [result addObject:tempArr];
+            }
         }
     }
     return result;

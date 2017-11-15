@@ -16,7 +16,6 @@
 		F42F3FE41FBAA1C800ABFA9B /* LyhaoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F42F3FE31FBAA1C800ABFA9B /* LyhaoTools.m */; };
 		F44127471F6B75830074720F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127461F6B75830074720F /* main.m */; };
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
-		F44127521F6B75830074720F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44127511F6B75830074720F /* Assets.xcassets */; };
 		F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44127531F6B75830074720F /* LaunchScreen.storyboard */; };
 		F4899F3F1F986F97004D7584 /* StudentLoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */; };
 		F4899F401F986F97004D7584 /* StudentLoginRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */; };
@@ -46,7 +45,6 @@
 		F44127461F6B75830074720F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F44127481F6B75830074720F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F44127491F6B75830074720F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F44127511F6B75830074720F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44127541F6B75830074720F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44127561F6B75830074720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4899F3C1F986F97004D7584 /* StudentLoginRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentLoginRegisterViewController.h; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				F42584531F6FBF3500DDE955 /* Socket */,
 				F42584521F6FBF2000DDE955 /* Student */,
 				F425845A1F70EDEE00DDE955 /* StudentFunc */,
-				F44127511F6B75830074720F /* Assets.xcassets */,
 				F44127531F6B75830074720F /* LaunchScreen.storyboard */,
 				F44127561F6B75830074720F /* Info.plist */,
 				F44127451F6B75830074720F /* Supporting Files */,
@@ -242,7 +239,6 @@
 				F4AABE7C1F6FBA03003526CD /* StudentListViewController.xib in Resources */,
 				F4899F401F986F97004D7584 /* StudentLoginRegisterViewController.xib in Resources */,
 				F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */,
-				F44127521F6B75830074720F /* Assets.xcassets in Resources */,
 				F42584641F70F2E700DDE955 /* AddViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
