@@ -19,21 +19,21 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    if ([[StudentUserDefaults sharedInstance] isLogin]) {
+//    if ([[StudentUserDefaults sharedInstance] isLogin]) {
         StudentListViewController *listVC = [[StudentListViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
         self.window.rootViewController = nav;
-    }
-    else {
-        StudentLoginRegisterViewController *lrVC = [[StudentLoginRegisterViewController alloc] init];
-        __weak typeof(self) weakSelf = self;
-        lrVC.f = ^{
-            StudentListViewController *listVC = [[StudentListViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
-            weakSelf.window.rootViewController = nav;
-        };
-        self.window.rootViewController = lrVC;
-    }
+//    }
+//    else {
+//        StudentLoginRegisterViewController *lrVC = [[StudentLoginRegisterViewController alloc] init];
+//        __weak typeof(self) weakSelf = self;
+//        lrVC.f = ^{
+//            StudentListViewController *listVC = [[StudentListViewController alloc] init];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
+//            weakSelf.window.rootViewController = nav;
+//        };
+//        self.window.rootViewController = lrVC;
+//    }
     [self.window makeKeyAndVisible];
     
     return YES;
