@@ -17,7 +17,6 @@
 		F44127471F6B75830074720F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127461F6B75830074720F /* main.m */; };
 		F441274A1F6B75830074720F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44127491F6B75830074720F /* AppDelegate.m */; };
 		F44127551F6B75830074720F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44127531F6B75830074720F /* LaunchScreen.storyboard */; };
-		F479E0361FBD770F00E94CEA /* vieww.m in Sources */ = {isa = PBXBuildFile; fileRef = F479E0351FBD770F00E94CEA /* vieww.m */; };
 		F4899F3F1F986F97004D7584 /* StudentLoginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */; };
 		F4899F401F986F97004D7584 /* StudentLoginRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */; };
 		F4899F431F987133004D7584 /* StudentUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = F4899F421F987133004D7584 /* StudentUserDefaults.m */; };
@@ -48,8 +47,6 @@
 		F44127491F6B75830074720F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F44127541F6B75830074720F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F44127561F6B75830074720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F479E0341FBD770F00E94CEA /* vieww.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vieww.h; sourceTree = "<group>"; };
-		F479E0351FBD770F00E94CEA /* vieww.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vieww.m; sourceTree = "<group>"; };
 		F4899F3C1F986F97004D7584 /* StudentLoginRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentLoginRegisterViewController.h; sourceTree = "<group>"; };
 		F4899F3D1F986F97004D7584 /* StudentLoginRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentLoginRegisterViewController.m; sourceTree = "<group>"; };
 		F4899F3E1F986F97004D7584 /* StudentLoginRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentLoginRegisterViewController.xib; sourceTree = "<group>"; };
@@ -102,8 +99,6 @@
 				F4370B421F7E2ACF005FE541 /* NotUse */,
 				F493EC1B1F6F8F3A001018CE /* lyhaoSocketManager.h */,
 				F493EC1C1F6F8F3A001018CE /* lyhaoSocketManager.m */,
-				F479E0341FBD770F00E94CEA /* vieww.h */,
-				F479E0351FBD770F00E94CEA /* vieww.m */,
 			);
 			name = Socket;
 			sourceTree = "<group>";
@@ -256,7 +251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42584631F70F2E700DDE955 /* AddViewController.m in Sources */,
-				F479E0361FBD770F00E94CEA /* vieww.m in Sources */,
 				F42F3FE41FBAA1C800ABFA9B /* LyhaoTools.m in Sources */,
 				F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */,
 				F4AABE801F6FBA1E003526CD /* StudentDetailTableViewCell.m in Sources */,

@@ -67,8 +67,7 @@
         [self alertWithMsg:@"学号不能为空"];
     }
     else {
-        NSString *sql = [NSString stringWithFormat:@"@insert@%@@%@@%@@%@", self.studentIDTextField.text, self.nameTextField.text, self.genderTextField.text, self.ageTextField.text];
-        NSLog(@"%@",sql);
+        NSString *sql = [NSString stringWithFormat:@"@insert@%@@%@@%@@%@#", self.studentIDTextField.text, self.nameTextField.text, self.genderTextField.text, self.ageTextField.text];
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.navigationController popViewControllerAnimated:YES];
     }

@@ -113,7 +113,7 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSString *sql = [NSString stringWithFormat:@"@delete@%@@%@@%@@%@", self.dataArr[indexPath.row][0], self.dataArr[indexPath.row][1], self.dataArr[indexPath.row][2], self.dataArr[indexPath.row][3]];
+        NSString *sql = [NSString stringWithFormat:@"@delete@%@@%@@%@@%@#", self.dataArr[indexPath.row][0], self.dataArr[indexPath.row][1], self.dataArr[indexPath.row][2], self.dataArr[indexPath.row][3]];
         [[lyhaoSocketManager shareInstance] sendMsg:sql];
         [self.tableView reloadData];
     }];
