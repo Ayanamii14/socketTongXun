@@ -14,5 +14,6 @@
 - (NSDictionary *)jsonStringToDictionary:(NSString *)jsonString;
 
 - (NSArray *)atStringToArray:(NSString *)atString;
++ (NSString *)ctos:(char *)s length:(int)l;
 
 @end

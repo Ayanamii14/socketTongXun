@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UITextField *ageTextField;
 @property (weak, nonatomic) IBOutlet UILabel *studentIDLabel;
-@property (weak, nonatomic) IBOutlet UITextField *studentIDTextField;
 
 @end
 
@@ -41,12 +40,12 @@
     NSString *name;
     NSString *gender;
     NSString *age;
-    NSString *studentID;
+    NSString *studentID = self.studentID;
     
+    //默认值
     (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
     (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);
-    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
-    (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
+    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (age = self.age) : (age = self.ageTextField.text);
     
     NSString *sql = [NSString stringWithFormat:@"@update@%@@%@@%@@%@#",studentID,name,gender,age];
     [[lyhaoSocketManager shareInstance] sendMsg:sql];
