@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6916FB251FCAB0B3000C311A /* ModifyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6916FB231FCAB0B3000C311A /* ModifyTableViewCell.m */; };
+		6916FB261FCAB0B3000C311A /* ModifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6916FB241FCAB0B3000C311A /* ModifyTableViewCell.xib */; };
 		F42584561F6FBF5800DDE955 /* lyhaoStreamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */; };
 		F42584591F6FC3C100DDE955 /* StudentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42584581F6FC3C100DDE955 /* StudentModel.m */; };
 		F425845E1F70EE1700DDE955 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F425845C1F70EE1700DDE955 /* ModifyViewController.m */; };
@@ -28,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6916FB221FCAB0B3000C311A /* ModifyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyTableViewCell.h; sourceTree = "<group>"; };
+		6916FB231FCAB0B3000C311A /* ModifyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyTableViewCell.m; sourceTree = "<group>"; };
+		6916FB241FCAB0B3000C311A /* ModifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyTableViewCell.xib; sourceTree = "<group>"; };
 		F42584541F6FBF5800DDE955 /* lyhaoStreamManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lyhaoStreamManager.h; sourceTree = "<group>"; };
 		F42584551F6FBF5800DDE955 /* lyhaoStreamManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lyhaoStreamManager.m; sourceTree = "<group>"; };
 		F42584571F6FC3C100DDE955 /* StudentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentModel.h; sourceTree = "<group>"; };
@@ -73,6 +78,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6916FB271FCAB0BD000C311A /* Modify */ = {
+			isa = PBXGroup;
+			children = (
+				F425845B1F70EE1700DDE955 /* ModifyViewController.h */,
+				F425845C1F70EE1700DDE955 /* ModifyViewController.m */,
+				F425845D1F70EE1700DDE955 /* ModifyViewController.xib */,
+				6916FB221FCAB0B3000C311A /* ModifyTableViewCell.h */,
+				6916FB231FCAB0B3000C311A /* ModifyTableViewCell.m */,
+				6916FB241FCAB0B3000C311A /* ModifyTableViewCell.xib */,
+			);
+			name = Modify;
+			sourceTree = "<group>";
+		};
+		6916FB281FCAB0CF000C311A /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				F42584601F70F2E700DDE955 /* AddViewController.h */,
+				F42584611F70F2E700DDE955 /* AddViewController.m */,
+				F42584621F70F2E700DDE955 /* AddViewController.xib */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
 		F42584521F6FBF2000DDE955 /* Student */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,12 +134,8 @@
 		F425845A1F70EDEE00DDE955 /* StudentFunc */ = {
 			isa = PBXGroup;
 			children = (
-				F425845B1F70EE1700DDE955 /* ModifyViewController.h */,
-				F425845C1F70EE1700DDE955 /* ModifyViewController.m */,
-				F425845D1F70EE1700DDE955 /* ModifyViewController.xib */,
-				F42584601F70F2E700DDE955 /* AddViewController.h */,
-				F42584611F70F2E700DDE955 /* AddViewController.m */,
-				F42584621F70F2E700DDE955 /* AddViewController.xib */,
+				6916FB281FCAB0CF000C311A /* Add */,
+				6916FB271FCAB0BD000C311A /* Modify */,
 			);
 			name = StudentFunc;
 			sourceTree = "<group>";
@@ -234,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6916FB261FCAB0B3000C311A /* ModifyTableViewCell.xib in Resources */,
 				F425845F1F70EE1700DDE955 /* ModifyViewController.xib in Resources */,
 				F4AABE811F6FBA1E003526CD /* StudentDetailTableViewCell.xib in Resources */,
 				F4AABE7C1F6FBA03003526CD /* StudentListViewController.xib in Resources */,
@@ -262,6 +287,7 @@
 				F4899F431F987133004D7584 /* StudentUserDefaults.m in Sources */,
 				F44127471F6B75830074720F /* main.m in Sources */,
 				F4899F3F1F986F97004D7584 /* StudentLoginRegisterViewController.m in Sources */,
+				6916FB251FCAB0B3000C311A /* ModifyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

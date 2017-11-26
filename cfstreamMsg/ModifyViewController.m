@@ -8,16 +8,12 @@
 
 #import "ModifyViewController.h"
 #import "lyhaoSocketManager.h"
+#import "ModifyTableViewCell.h"
 
-@interface ModifyViewController ()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
-@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
-@property (weak, nonatomic) IBOutlet UITextField *ageTextField;
-@property (weak, nonatomic) IBOutlet UILabel *studentIDLabel;
-@property (weak, nonatomic) IBOutlet UITextField *studentIDTextField;
+static NSString *kModifyTableViewCellID = @"kModifyTableViewCellID";
+
+@interface ModifyViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,14 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initData];
+    [self initUI];
 }
 
-- (void)initData {
-    self.nameLabel.text = self.name;
-    self.genderLabel.text = self.gender;
-    self.ageLabel.text = self.age;
-    self.studentIDLabel.text = self.studentID;
+- (void)initUI {
+    self.tableView.rowHeight = 60;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UIAccessibilityTraitNone;
 }
 
 - (IBAction)modifyAction:(UIButton *)sender {
@@ -43,28 +39,52 @@
     NSString *age;
     NSString *studentID;
     
-    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
-    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);
-    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
-    (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
+//    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
+//    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);
+//    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
+//    (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
     
     NSString *sql = [NSString stringWithFormat:@"@update@%@@%@@%@@%@#",studentID,name,gender,age];
     [[lyhaoSocketManager shareInstance] sendMsg:sql];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - tableview
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ModifyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kModifyTableViewCellID];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"ModifyTableViewCell" owner:nil options:nil] firstObject];
+    }
+    
+    [cell refreshViewWithData:self.dataArr withIndexPath:indexPath];
+    
+    return cell;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld", indexPath.row);
+}
+
+#pragma mark -touch
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 
+#pragma mark - textfield
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (NSMutableArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
 }
 
 @end
