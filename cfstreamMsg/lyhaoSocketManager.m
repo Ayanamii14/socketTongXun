@@ -90,7 +90,7 @@ static short server_port = 8080;
  */
 - (void)sendMsg:(NSString *)msg {
     const char *send_Msg = [msg UTF8String];
-    send(_clientSocket, send_Msg, strlen(send_Msg) + 1, 0);
+    send(_clientSocket, send_Msg, strlen(send_Msg), 0);
 }
 
 /**

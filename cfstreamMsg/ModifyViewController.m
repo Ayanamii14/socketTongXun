@@ -37,7 +37,7 @@ static NSString *kModifyTableViewCellID = @"kModifyTableViewCellID";
     NSString *name;
     NSString *gender;
     NSString *age;
-    NSString *studentID;
+    NSString *studentID = self.studentID;
     
 //    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
 //    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);

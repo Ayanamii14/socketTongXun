@@ -67,4 +67,29 @@
     return result;
 }
 
++ (NSString *)ctos:(char *)s length:(int)l{
+    NSString *cts = @"";
+    BOOL beginsort = NO;
+    for (int i = 0;i < l;i ++) {
+        if (s[i] == '\0') {
+            if (s[i + 1] == '\0') {
+                //已经有连续两个'\0'了，代表整个数组结束了（也不会说连续几个'\0'后，再接数据了的吧，那岂不是睿智的很）
+                beginsort = NO;
+                break;
+            }
+            else {
+                beginsort = YES;
+            }
+        }
+        if (beginsort) {
+            s[i] = s[i + 1];
+            if(s[i + 1] == '\0') {
+                break;
+            }
+        }
+    }
+    cts = [NSString stringWithFormat:@"%s", s];
+    return cts;
+}
+
 @end
