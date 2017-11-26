@@ -8,13 +8,23 @@
 
 #import "ModifyViewController.h"
 #import "lyhaoSocketManager.h"
-#import "ModifyTableViewCell.h"
 
-static NSString *kModifyTableViewCellID = @"kModifyTableViewCellID";
-
-@interface ModifyViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@interface ModifyViewController ()<UITextFieldDelegate> {
+    CGRect _namerect;
+    CGRect _genderrect;
+    CGRect _agerect;
+}
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UITextField *ageTextField;
+@property (weak, nonatomic) IBOutlet UILabel *studentIDLabel;
+@property (weak, nonatomic) IBOutlet UIView *idView;
+@property (weak, nonatomic) IBOutlet UIView *nameView;
+@property (weak, nonatomic) IBOutlet UIView *genderView;
+@property (weak, nonatomic) IBOutlet UIView *ageView;
 @end
 
 @implementation ModifyViewController
@@ -22,69 +32,93 @@ static NSString *kModifyTableViewCellID = @"kModifyTableViewCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initUI];
+    self.nameTextField.delegate = self;
+    self.nameTextField.tag = 1001;
+    self.genderTextField.delegate = self;
+    self.genderTextField.tag = 1002;
+    self.ageTextField.delegate = self;
+    self.ageTextField.tag = 1003;
+    
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(modifyAction:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
+    [self initData];
 }
 
-- (void)initUI {
-    self.tableView.rowHeight = 60;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UIAccessibilityTraitNone;
+- (void)initData {
+    self.nameLabel.text = [NSString stringWithFormat:@"姓名: %@", self.sname];
+    self.genderLabel.text = [NSString stringWithFormat:@"性别: %@", self.sgender];
+    self.ageLabel.text = [NSString stringWithFormat:@"年龄: %@", self.sage];
+    self.studentIDLabel.text = [NSString stringWithFormat:@"学号: %@", self.sid];
 }
 
-- (IBAction)modifyAction:(UIButton *)sender {
+- (void)modifyAction:(UIButton *)sender {
     //修改student sql语句
     NSString *name;
     NSString *gender;
     NSString *age;
-    NSString *studentID = self.studentID;
+    NSString *studentID = self.sid;
     
-//    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.nameTextField.text);
-//    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.gender) : (gender = self.genderTextField.text);
-//    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (name = self.age) : (name = self.ageTextField.text);
-//    (self.studentIDTextField.text == nil || [self.studentIDTextField.text isEqualToString:@""]) ? (name = self.name) : (name = self.studentIDTextField.text);
+    //默认值
+    (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) ? (name = self.sname) : (name = self.nameTextField.text);
+    (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) ? (gender = self.sgender) : (gender = self.genderTextField.text);
+    (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) ? (age = self.sage) : (age = self.ageTextField.text);
     
     NSString *sql = [NSString stringWithFormat:@"@update@%@@%@@%@@%@#",studentID,name,gender,age];
     [[lyhaoSocketManager shareInstance] sendMsg:sql];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - tableview
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ModifyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kModifyTableViewCellID];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"ModifyTableViewCell" owner:nil options:nil] firstObject];
-    }
-    
-    [cell refreshViewWithData:self.dataArr withIndexPath:indexPath];
-    
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld", indexPath.row);
-}
-
-#pragma mark -touch
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 
-#pragma mark - textfield
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
-- (NSMutableArray *)dataArr {
-    if (!_dataArr) {
-        _dataArr = [NSMutableArray array];
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1001:
+            _namerect = self.nameLabel.frame;
+            self.nameLabel.frame = CGRectMake(15, 0, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
+            break;
+        case 1002:
+            _genderrect = self.genderLabel.frame;
+            self.genderLabel.frame = CGRectMake(15, 0, self.genderLabel.frame.size.width, self.genderLabel.frame.size.height);
+            break;
+        case 1003:
+            _agerect = self.ageLabel.frame;
+            self.ageLabel.frame = CGRectMake(15, 0, self.ageLabel.frame.size.width, self.ageLabel.frame.size.height);
+            break;
+        default:
+            break;
     }
-    return _dataArr;
+    return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1001:
+            if (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) {
+                self.nameLabel.frame = _namerect;
+            }
+            break;
+        case 1002:
+            if (self.genderTextField.text == nil || [self.genderTextField.text isEqualToString:@""]) {
+                self.genderLabel.frame = _genderrect;
+            }
+            break;
+        case 1003:
+            if (self.ageTextField.text == nil || [self.ageTextField.text isEqualToString:@""]) {
+                self.ageLabel.frame = _agerect;
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ModifyViewController : UIViewController
-@property (strong, nonatomic) NSMutableArray *dataArr;
+
+@property (copy, nonatomic) NSString *sid;
+@property (copy, nonatomic) NSString *sname;
+@property (copy, nonatomic) NSString *sgender;
+@property (copy, nonatomic) NSString *sage;
 
 @end

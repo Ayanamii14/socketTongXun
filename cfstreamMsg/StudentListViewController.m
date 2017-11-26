@@ -119,7 +119,10 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
     }];
     UITableViewRowAction *modifyAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
-        modifyVC.dataArr = self.dataArr[indexPath.row];
+        modifyVC.sid = self.dataArr[indexPath.row][0];
+        modifyVC.sname = self.dataArr[indexPath.row][1];
+        modifyVC.sgender = self.dataArr[indexPath.row][2];
+        modifyVC.sage = self.dataArr[indexPath.row][3];
         [self.navigationController pushViewController:modifyVC animated:YES];
     }];
     
