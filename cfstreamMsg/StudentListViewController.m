@@ -77,14 +77,16 @@ static NSString *kStudentDetailTableViewCellID = @"kStudentDetailTableViewCellID
      2 : SEX
      3 : AGE
      */
-    NSArray *arr = [self.lyhaotools atStringToArray:msg];
-    if (arr != nil || arr.count != 0) {
-        self.dataArr = [NSMutableArray arrayWithArray:arr];
+    if (msg) {
+        NSArray *arr = [self.lyhaotools atStringToArray:msg];
+        if (arr != nil && arr.count != 0) {
+            self.dataArr = [NSMutableArray arrayWithArray:arr];
+        }
+        //回主线程更新
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }
-    //回主线程更新
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
 }
 
 - (void)socketAlertMsg:(NSString *)msg {
